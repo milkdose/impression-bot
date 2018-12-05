@@ -1,0 +1,2 @@
+output_mac: ImpressionVisualBot.cpp ProductList.cpp ProductList.h turnToAlpha.cpp image_place.cpp regexing.cpp get_file_name.cpp ratio_resize.cpp print_area_regex.cpp print_area_regex_prod.cpp down_size.cpp
+	sudo g++ ./image_place.cpp ./ImpressionVisualBot.cpp ./ProductList.cpp ./turnToAlpha.cpp ./regexing.cpp ./get_file_name.cpp ./ratio_resize.cpp ./print_area_regex.cpp ./print_area_regex_prod.cpp ./down_size.cpp `pkg-config --libs --cflags opencv`
