@@ -1,5 +1,6 @@
 #include "ProductList.h"
 
+double MULTIPLIER = 5; //multiplier to scale the the product and artwork larger so resolution isn't too low
 float PIXEL_DIM = 3.7;
 ifstream myfile ("./products_list_edited.csv");
 
@@ -51,12 +52,18 @@ double print_area_pixels_width(string code)
 
         stringstream width(print_area_del_width);
         stringstream height(print_area_del_height);
-        int prod_width;
-        int prod_height;
+        double  prod_width;
+        double  prod_height;
         width >> prod_width; //value converted to int
         height >> prod_height; //value converted to int
-	
-	double width_pixels = (prod_height * PIXEL_DIM)-(PIXEL_DIM*20); //need to remove 20mm from final artwork for some reason
+
+//	if (prod_width < prod_height)
+//		prod_height = prod_width;
+//	else if (prod_height < prod_width)
+//		prod_width = prod_height;
+
+	//double width_pixels = ((prod_height * PIXEL_DIM)-(PIXEL_DIM*20))*MULTIPLIER; //need to remove 20mm from final artwork for some reason
+	double width_pixels = prod_width*MULTIPLIER; //need to remove 20mm from final artwork for some reason
 
 	return width_pixels;
 }
@@ -109,12 +116,18 @@ double print_area_pixels_height(string code)
 
         stringstream width(print_area_del_width);
         stringstream height(print_area_del_height);
-        int prod_width;
-        int prod_height;
+        double  prod_width;
+        double  prod_height;
         width >> prod_width; //value converted to int
         height >> prod_height; //value converted to int
 
-	double heigth_pixels = (prod_height * PIXEL_DIM)-(PIXEL_DIM*20);
+//	if (prod_width < prod_height)
+//		prod_height = prod_width;
+//	else if (prod_height < prod_width)
+//		prod_width = prod_height;
+
+	//double heigth_pixels = ((prod_height * PIXEL_DIM)-(PIXEL_DIM*20))*MULTIPLIER;
+	double heigth_pixels = prod_height*MULTIPLIER;
 
 	return heigth_pixels;
 }

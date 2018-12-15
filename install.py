@@ -26,4 +26,6 @@ user_input("Opencv", opencv_script)
 user_input("pkg", brew_pkg)
 user_input("dependancy updates(optional)", brew_update)
 
+#add install for imagemagick
+
 print("Process complete, done.")

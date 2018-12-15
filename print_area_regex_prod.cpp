@@ -1,5 +1,6 @@
 #include "ProductList.h"
 
+double MULTIPLIER2 = 5; //default 5
 float PIXEL_DIM2 = 3.7;
 ifstream myfile2 ("./products_list_edited.csv");
 
@@ -51,13 +52,19 @@ double print_area_pixels_width_prod(string code)
 
         stringstream width(print_area_del_width);
         stringstream height(print_area_del_height);
-        int prod_width;
-        int prod_height;
+        double prod_width;
+        double prod_height;
         width >> prod_width; //value converted to int
         height >> prod_height; //value converted to int
 
+//	if (prod_width > prod_height)
+//		prod_height = prod_width;
+//	else if (prod_height > prod_width)
+//		prod_width = prod_height;
+
 	double width_pixels_mm = prod_width * 10; //convert to mm from cm
-	double width_pixels_prod = (width_pixels_mm * PIXEL_DIM2)-(PIXEL_DIM2*20);
+	//double width_pixels_prod = ((width_pixels_mm * PIXEL_DIM2)-(PIXEL_DIM2*20))*MULTIPLIER2;
+	double width_pixels_prod = width_pixels_mm*MULTIPLIER2;
 
 	return width_pixels_prod;
 }
@@ -110,13 +117,19 @@ double print_area_pixels_height_prod(string code)
 
         stringstream width(print_area_del_width);
         stringstream height(print_area_del_height);
-        int prod_width;
-        int prod_height;
+        double prod_width;
+        double prod_height;
         width >> prod_width; //value converted to int
         height >> prod_height; //value converted to int
 
+//	if (prod_width > prod_height)
+//		prod_height = prod_width;
+//	else if (prod_height > prod_width)
+//		prod_width = prod_height;
+
 	double height_pixels_mm = prod_height * 10; //convert to mm from cm
-	double height_pixels_prod = (height_pixels_mm * PIXEL_DIM2)-(PIXEL_DIM2*20);
+	//double height_pixels_prod = ((height_pixels_mm * PIXEL_DIM2)-(PIXEL_DIM2*20))*MULTIPLIER2;
+	double height_pixels_prod = height_pixels_mm*MULTIPLIER2;
 
 	return height_pixels_prod;
 }

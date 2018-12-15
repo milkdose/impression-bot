@@ -30,7 +30,7 @@ string regexing(char *dir_name, string userData, string colourChoice)
 
 			//temp_file_name = fileName;
 			//temp_file_name.erase(0, 2); //get file name only, doesn't work for long directories
-			cout << "Product image found -> " << temp_file_name << endl;
+			cout << FCYN("Product image found -> ") << temp_file_name << endl;
 			return temp_file_name;
 			break;
 		}
@@ -38,7 +38,7 @@ string regexing(char *dir_name, string userData, string colourChoice)
 	closedir(directory);
 	
  	if(!directory) //if folder cannot be opened
-		cout << "Cannot open Input Folder\n";
+		cout << FRED("Cannot open Input Folder\n");
 	else if(rawImage.data == NULL) //if file cannot be found
-		cout << "\nPlease Note Cannot Open Image: Image file might not exist.\n";
+		cout << FRED("\nPlease Note Cannot Open Image: Image file might not exist.\n");
 }

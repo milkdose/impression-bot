@@ -8,26 +8,28 @@
 int main()
 {
 	printf("\033c"); //wtf? Weird console command for clearing terminal console
-	const char *DIR_NAME = "../Impression2018_high"; //why const char *? Find why const is a requirement
-	string DIR_NAME_LOGO = "./test_images/";
+	const char *DIR_NAME = "../Impression2018_high/"; //why const char *? bacause function has C code, c does not have classes so no concept of string type
+	string DIR_NAME_LOGO = "./test_images/"; //input dir
+	string DIR_OUTPUT = "./output_images/"; //output dir
 	string userDataInput; //product number
 	string colourChoice; //product colour choice
 	string ImageInput1; //product image
 	string ImageInput2; //logo image
 
-	cout << "\nImpression Visual Bot";
+	cout << BOLD(FMAG("\nImpression Visual Bot"));
 	cout << "\n-----------------------------------------------\n";
 
-	cout << "Type in the product number: ";
+	cout << FMAG("Please type on the corresponding numbers to provided questions.\n");
+	cout << BOLD(FMAG("\nType in the product number: "));
 	cin >> userDataInput;
 
-	cout << "Pick colour of product: ";
+	cout << BOLD(FMAG("Pick colour of product: "));
 	cin >> colourChoice;
 
-	cout << "\nType in the second image: ";
+	cout << BOLD(FMAG("Type in the second image: "));
 	cin >> ImageInput2;
 
-	cout << "\nCalculating, please wait...\n";
+	cout << FMAG("\nCalculating, please wait...\n");
 
 	//Regular Expression to navigate through the directory - linux/mac
 	ImageInput1 = regexing((char *)DIR_NAME, userDataInput, colourChoice);
@@ -38,16 +40,18 @@ int main()
  	Mat image1 = imread(dir_converted + "/" + ImageInput1); // Read the product image file
  	Mat image1_size = imread(dir_converted + "/" + ImageInput1); // Read the product image file
 
-	resize(image1, image1, ratio_resize(print_area_pixels_width_prod(userDataInput), print_area_pixels_height_prod(userDataInput), image1));
+	string image1_full_path = DIR_NAME+ImageInput1; //full path for product image
+	string image2_full_path = DIR_NAME_LOGO+ImageInput2; //full path for logo image
+	resize(image1, image1, ratio_resize_prod(print_area_pixels_width_prod(userDataInput), print_area_pixels_height_prod(userDataInput), image1, image1_full_path, DIR_OUTPUT));
 
 	if( image1.empty()) // Check for product image input
 	{
-	    cout <<  "\nCould not open or find the PRODUCT image from regex.\n";
+	    cout <<  FRED("\nCould not open or find the PRODUCT image from regex.\n");
 	    return -1;
 	}
 	else if( image2.empty()) // Check for artwork image input
 	{
-	    cout <<  "\nCould not open or find the ARTWORK image.\n";
+	    cout <<  FRED("\nCould not open or find the ARTWORK image.\n");
 	    return -1;
 	}
 
@@ -56,9 +60,14 @@ int main()
    	//imshow( "Display window", productList((userDataInput), image2, image1, colourChoice, result, image1_size));
 	//waitKey(0); // Wait for a keystroke in the window
 
-	imwrite("./output_images/"+userDataInput+".jpg", productList((userDataInput), image2, image1, colourChoice, result, image1_size));	
-	cout << "\nDone.";
+	imwrite(DIR_OUTPUT+userDataInput+".jpg", productList((userDataInput),image2_full_path , image2, image1, colourChoice, result, image1_size, DIR_OUTPUT));
+	return_product_data(userDataInput); //print out the product data from the CSV file to the terminal
 	cout << "\n-----------------------------------------------\n";
+	cout << FCYN("Image saved in: ") + DIR_OUTPUT << '\n' << endl;
+
+	//remove temp logo and image files
+	remove((DIR_OUTPUT+"output2.png").c_str()); //remove function is C code from stdio.h library, c_str() is c equivalent to string
+	remove((DIR_OUTPUT+"output.png").c_str());
 
 	return 0;
 }

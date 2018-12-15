@@ -5,12 +5,11 @@
 Mat turnToAlpha(string imagePlace)
 {
 	int choice;
-	cout << "\nWhat colour is your artwork?";
-	cout << "\n1.White\t2.Black\t3.Various Colours\n";
+	cout << BOLD(FMAG("\nArtwork background colour to be removed?"));
+	cout << FMAG("\n1.White\t\t2.Black\n");
 	cin >> choice;
 
 	Mat input = imread("./" + string(imagePlace), -1);
-	
 	Mat input_bgra;
 	cvtColor(input, input_bgra, CV_BGR2BGRA);
 
@@ -45,26 +44,6 @@ Mat turnToAlpha(string imagePlace)
                                 pixel[3] = 0;
                         }
                 }
-	}
-	else if (choice == 3)
-	{
-		Mat input = imread("./" + string(imagePlace), -1); //UNCHANGED causes logo to not show in output
-	
-		Mat input_bgra;
-		cvtColor(input, input_bgra, CV_BGR2BGRA);
-		// find all white pixel and set alpha value to zero:
-		for (int y = 0; y < input_bgra.rows; ++y)
-		for (int x = 0; x < input_bgra.cols; ++x)
-		{
-			Vec4b & pixel = input_bgra.at<cv::Vec4b>(y, x);
-			// if pixel is white
-			int thres = 255; // where thres is some value smaller but near to 255(white).
-			if (pixel[0] >= thres&& pixel[1] >= thres && pixel[2] >= thres)
-			{
-				// set alpha to zero:
-				pixel[3] = 0;
-			}
-		}
 	}
 
 	// save as .png file (which supports alpha channels/transparency)
