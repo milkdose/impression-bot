@@ -41,8 +41,9 @@ int main()
  	Mat image1_size = imread(dir_converted + "/" + ImageInput1); // Read the product image file
 
 	string image1_full_path = DIR_NAME+ImageInput1; //full path for product image
-	string image2_full_path = DIR_NAME_LOGO+ImageInput2; //full path for logo image
-	resize(image1, image1, ratio_resize_prod(print_area_pixels_width_prod(userDataInput), print_area_pixels_height_prod(userDataInput), image1, image1_full_path, DIR_OUTPUT));
+	//string image2_full_path = DIR_NAME_LOGO+"converted_image.jpg"; //full path for logo image
+	string image2_full_path = DIR_OUTPUT+"converted_image.jpg"; //full path for logo image
+	resize(image1, image1, ratio_resize_prod(print_area_pixels_width_prod(image2_full_path), print_area_pixels_height_prod(userDataInput), image1, image1_full_path, DIR_OUTPUT));
 
 	if( image1.empty()) // Check for product image input
 	{
@@ -68,6 +69,7 @@ int main()
 	//remove temp logo and image files
 	remove((DIR_OUTPUT+"output2.png").c_str()); //remove function is C code from stdio.h library, c_str() is c equivalent to string
 	remove((DIR_OUTPUT+"output.png").c_str());
+	remove((DIR_OUTPUT+"converted_image.jpg").c_str());
 
 	return 0;
 }

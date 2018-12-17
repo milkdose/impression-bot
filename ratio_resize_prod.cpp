@@ -12,8 +12,10 @@ Size ratio_resize_prod(double width, double height, Mat image, string image_name
 	string value = val.str();
 
 	//DEBUG print
-	cout << "Prod h: " << image.size().height/5 << endl;
-	cout << "Prod w: " << image.size().width/5 << endl;
+//	cout << "Image size h:" << image.size().height/5 << endl;
+//	cout << "Image size w:" << image.size().width/5 << endl;
+//	cout << "Prod - area h: " << height << endl;
+//      cout << "Prod - area w: " << width << endl;
 
 	//perform image operations
 	Image image_in;

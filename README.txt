@@ -22,7 +22,7 @@ DEPENDENCIES:
 -Makefile
 -g++
 -pkg-config (for linking at copile time)
--ImageMagick
+-ImageMagick/Ghostscript
 
 FUTURE CHANGES:
 -Add option for multiple print areas such as engraving

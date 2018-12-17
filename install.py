@@ -20,12 +20,16 @@ brew_update = "brew update && brew upgrade && brew cleanup"
 
 brew_pkg = "brew install pkg-config"
 
+brew_imagemagick = "brew install imagemagick"
+
+brew_ghostscript = "brew install ghostscript"
+
 user_input("xcode-command-tools", xcode_script)
 user_input("Homebrew", homebrew_script)
 user_input("Opencv", opencv_script)
 user_input("pkg", brew_pkg)
-user_input("dependancy updates(optional)", brew_update)
-
-#add install for imagemagick
+user_input("Image Magick", brew_imagemagick)
+user_input("Ghost Script", brew_ghostscript)
+user_input("update?(optional)", brew_update)
 
 print("Process complete, done.")

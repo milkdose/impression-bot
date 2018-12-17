@@ -9,7 +9,10 @@ Mat turnToAlpha(string imagePlace)
 	cout << FMAG("\n1.White\t\t2.Black\n");
 	cin >> choice;
 
-	Mat input = imread("./" + string(imagePlace), -1);
+//	image_type(imagePlace);	
+	
+	//Mat input = imread("./" + string(imagePlace), -1);
+	Mat input = imread(image_type(imagePlace), -1);
 	Mat input_bgra;
 	cvtColor(input, input_bgra, CV_BGR2BGRA);
 

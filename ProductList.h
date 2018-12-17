@@ -41,6 +41,8 @@ Mat down_size(Mat, Mat);
 
 void return_product_data(string);
 
+string image_type(string);
+
 double print_area_pixels_width(string code);
 double print_area_pixels_height(string code);
 double print_area_pixels_height_prod(string code);

@@ -29,19 +29,21 @@ Size ratio_resize_logo(double width, double height, double prod_w, double prod_h
 		image_in.scale(str_w+"x"+str_h);
 	else if (prod_h > prod_w && logo_w > logo_h) //works 2432
 		image_in.scale(str_w+"x"+str_w);
-	else if (logo_w == logo_h) //if logo is square
+	else if (logo_w == logo_h && width < height) //if logo is square
 		image_in.scale(str_w+"x"+str_w);
+	else if (logo_w == logo_h) //if logo is square
+		image_in.scale(str_h+"x"+str_h);
 
 	//create temp files
 	image_in.write(directory+"output2.png");
 	Mat final_image = imread(directory+"output2.png", -1);
 
-	//DEBUG print
-	cout << "Print area h: " << height/5 << endl;
-	cout << "Print area w: " << width/5 << endl;
-	//MORE DEBUG PRINT
-	cout << "Logo image w: " << final_image.size().width/5 << endl;
-	cout << "Logo image h: " << final_image.size().height/5 << endl;
+//	//DEBUG print
+//	cout << "Print area h: " << height/5 << endl;
+//	cout << "Print area w: " << width/5 << endl;
+//	//MORE DEBUG PRINT
+//	cout << "Logo image w: " << final_image.size().width/5 << endl;
+//	cout << "Logo image h: " << final_image.size().height/5 << endl;
 
 	Size final_size(final_image.size().width, final_image.size().height);
 	
