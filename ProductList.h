@@ -19,6 +19,7 @@
 #include "text_colour.h"
 #include <Magick++.h>
 #include <sstream>
+#include <curses.h>
 
 using namespace std;
 using namespace cv;
@@ -47,3 +48,8 @@ double print_area_pixels_width(string code);
 double print_area_pixels_height(string code);
 double print_area_pixels_height_prod(string code);
 double print_area_pixels_width_prod(string code);
+
+void place_interactive(string, Mat, Mat);
+void custom_coordinates(string, int, int);
+int find_values_x(string);
+int find_values_y(string);

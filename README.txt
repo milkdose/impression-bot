@@ -25,6 +25,7 @@ DEPENDENCIES:
 -ImageMagick/Ghostscript
 
 FUTURE CHANGES:
+-Build logo placing engine, allow user to use to to custom place image on product
 -Add option for multiple print areas such as engraving
 -Convert EPS/SVG to jpg
 -Find CMYK and output values to console
@@ -34,3 +35,4 @@ FUTURE CHANGES:
 -Add feature to detect edges and remove background
 -Add ability to manually input a desired artwork size
 -Output multiple images for each product with logo on different positions, for storyboarding
+-Add error handling for terminating program based on appropriate errors

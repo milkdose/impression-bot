@@ -5,6 +5,8 @@
 
 #include "ProductList.h"
 
+class Bad_input {};
+
 int main()
 {
 	printf("\033c"); //wtf? Weird console command for clearing terminal console
@@ -34,7 +36,8 @@ int main()
 	//Regular Expression to navigate through the directory - linux/mac
 	ImageInput1 = regexing((char *)DIR_NAME, userDataInput, colourChoice);
 
-	Mat image2 = turnToAlpha(DIR_NAME_LOGO+ImageInput2);	//tuenToAlpha() turns the JPG image into a png without white pixels 
+	//Turns the JPG image into a png without white pixels 
+	Mat image2 = turnToAlpha(DIR_NAME_LOGO+ImageInput2);
 
 	string dir_converted(DIR_NAME); //convert const char to string
  	Mat image1 = imread(dir_converted + "/" + ImageInput1); // Read the product image file
@@ -43,7 +46,11 @@ int main()
 	string image1_full_path = DIR_NAME+ImageInput1; //full path for product image
 	//string image2_full_path = DIR_NAME_LOGO+"converted_image.jpg"; //full path for logo image
 	string image2_full_path = DIR_OUTPUT+"converted_image.jpg"; //full path for logo image
-	resize(image1, image1, ratio_resize_prod(print_area_pixels_width_prod(image2_full_path), print_area_pixels_height_prod(userDataInput), image1, image1_full_path, DIR_OUTPUT));
+
+	double height_of_prod = print_area_pixels_height_prod(userDataInput);
+	double width_of_prod = print_area_pixels_width_prod(userDataInput);
+	
+	resize(image1, image1, ratio_resize_prod(width_of_prod, height_of_prod, image1, image1_full_path, DIR_OUTPUT));
 
 	if( image1.empty()) // Check for product image input
 	{
@@ -57,9 +64,6 @@ int main()
 	}
 
 	Mat result;
-  	//namedWindow( "Display window", WINDOW_AUTOSIZE ); // Create a window for display.
-   	//imshow( "Display window", productList((userDataInput), image2, image1, colourChoice, result, image1_size));
-	//waitKey(0); // Wait for a keystroke in the window
 
 	imwrite(DIR_OUTPUT+userDataInput+".jpg", productList((userDataInput),image2_full_path , image2, image1, colourChoice, result, image1_size, DIR_OUTPUT));
 	return_product_data(userDataInput); //print out the product data from the CSV file to the terminal

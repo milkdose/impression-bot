@@ -2,7 +2,6 @@
 
 //product and artwork image comes in as the following: Width x Height
 Size ratio_resize_logo(double width, double height, double prod_w, double prod_h, Mat image, string image_name, string directory)
-
 {
 	double logo_h = image.size().height;
 	double logo_w = image.size().width;
@@ -33,12 +32,20 @@ Size ratio_resize_logo(double width, double height, double prod_w, double prod_h
 		image_in.scale(str_w+"x"+str_w);
 	else if (logo_w == logo_h) //if logo is square
 		image_in.scale(str_h+"x"+str_h);
+	else if (prod_w == prod_h && height < width && logo_w > logo_h)
+		image_in.scale(str_w+"x"+str_w);
+	else if (prod_w == prod_h && height < width && logo_h > logo_w)
+		image_in.scale(str_h+"x"+str_h);
+	else if (width < height)
+		image_in.scale(str_w+"x"+str_w);
+	else
+		image_in.scale(str_h+"x"+str_h);
 
 	//create temp files
 	image_in.write(directory+"output2.png");
 	Mat final_image = imread(directory+"output2.png", -1);
 
-//	//DEBUG print
+	//DEBUG print
 //	cout << "Print area h: " << height/5 << endl;
 //	cout << "Print area w: " << width/5 << endl;
 //	//MORE DEBUG PRINT
